@@ -1,78 +1,93 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="center"><h1>SDCBBS 闪电橙社区<h1></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## About Laravel
+## 项目介绍
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+这是一个基于laravel 6.0 框架的一个社区技术分享的社区问答系统，本项目适用于新手拿来参考，大神见了勿喷。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 运行环境
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+> PHP 7.4
+> MySQL 5.7 以上
+> Redis 缓存服务
+本项目是在Homestead开发的，最好最省事的办法就是你用的也是这个开发环境。
 
-## Learning Laravel
+## 开发环境部署与安装
+### 将代码拉到本地
+```bash
+git clone https://github.com/DanceLynx/sdcbbs.git
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 复制.env文件及依赖安装和密钥生成
+```bash
+$ cd sdcbbs
+$ cp .env.example .env
+$ composer install
+$ php artisan key:generate
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 配置.env文件
 
-## Laravel Sponsors
+```env
+# 百度翻译配置
+BAIDU_TRANSLATE_APPID=
+BAIDU_TRANSLATE_KEY=
+# 其他相关配置省略 包括数据库配置
+```
+最后就可以正常访问啦！
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## 服务器架构说明
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+- Ubuutu 16.04 LTS Server
+- [Laravel LNMP安装脚本](https://github.com/DanceLynx/laravel-ubuntu-init)
+这样就可以快速搭建一个适用于线上的环境，详情查看脚本说明。
 
-## Contributing
+## 代码上线
+需要关闭调试模式
+然后各种缓存构建
+```bash
+# 构建路由缓存
+$ php artisan route:cache
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 构建视图缓存
+$ php artisan view:cache
 
-## Code of Conduct
+# 构建配置缓存
+$ php artisan config:cache
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 构建事件缓存
+$ php artisan event:cache
 
-## Security Vulnerabilities
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 扩展包说明
+### 生产环境扩展包
 
-## License
+| 扩展包 | 说明 |
+|:----:|:----:|
+|[guzzlehttp/guzzle](https://packagist.org/packages/guzzlehttp/guzzle)|HTTP 客户端请求库|
+|[intervention/image](https://packagist.org/packages/intervention/image)|支持Laravel的图像处理及操作库|
+|[laravel/horizon](https://packagist.org/packages/laravel/horizon)|Laravel队列的界面及代码配置的库|
+|[mews/captcha](https://packagist.org/packages/mews/captcha)|Laravel 5 ~ 6 的验证码扩展包|
+|[overtrue/laravel-lang](https://packagist.org/packages/overtrue/laravel-lang)|支持52种语言的语言包|
+|[overtrue/pinyin](https://packagist.org/packages/overtrue/pinyin)|汉语拼音转换扩展包|
+|[predis/predis](https://packagist.org/packages/predis/predis)|适用于PHP和HHVM的灵活且功能完善的Redis客户端|
+|[spatie/laravel-permission](https://packagist.org/packages/spatie/laravel-permission)|支持Laravel 5.8 以上的权限处理库|
+|[summerblue/administrator](https://packagist.org/packages/summerblue/administrator)|Laravel 的数据库接口包|
+|[summerblue/laravel-active](https://packagist.org/packages/summerblue/laravel-active)|当前访问路径自动添加active属性|
+|[viacreative/sudo-su](https://packagist.org/packages/viacreative/sudo-su)|可以一键切换其他用户的扩展包|
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 开发环境的扩展包(dev)
+
+| 扩展包 | 说明 |
+|:----:|:----:|
+|[barryvdh/laravel-debugbar](https://packagist.org/packages/barryvdh/laravel-debugbar)|适用于Laravel的调试条|
+|[barryvdh/laravel-ide-helper](https://packagist.org/packages/barryvdh/laravel-ide-helper)|Laravel IDE Helper为所有Facade类生成正确的PHP文档，以改善自动完成功能。|
+|[summerblue/generator](https://packagist.org/packages/summerblue/generator)|一个支持Laravel的代码生成器|
+
+## 自定义 Artisan 命令列表
+- sdcbbs:calculate-active-user  生成活跃用户
+- sdcbbs:sync-user-actived-at   将最后登录时间的用户数据从redis同步到数据库
+
+## 队列列表
+- TranslateSlug  话题slug生成队列
