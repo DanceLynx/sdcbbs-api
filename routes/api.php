@@ -1,4 +1,9 @@
 <?php
+/*
+ * @Author: DanceLynx
+ * @Description: API 接口路由
+ * @Date: 2020-07-02 20:38:12
+ */
 
 use Illuminate\Http\Request;
 
@@ -12,8 +17,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
 Route::prefix('v1')
     ->name('api.v1,')
-    ->group(function (){
-
-});
+    ->group(function () {
+    });
