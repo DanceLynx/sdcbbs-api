@@ -19,9 +19,12 @@ return [
             'file' => '/tmp/easy-sms.log',
         ],
         'aliyun' => [
-            'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID'),
-            'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
+            'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID',''),
+            'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET',''),
             'sign_name' => '闪电橙工作室',
+            'templates' => [
+                'register' => env('SMS_ALIYUN_TEMPLATE_REGISTER','')
+            ],
         ],
     ],
 ];
