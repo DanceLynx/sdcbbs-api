@@ -16,8 +16,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Traits\UserActiveHelper;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail,JWTSubject
 {
     use UserActiveHelper;
     use HasRoles;
@@ -102,5 +103,14 @@ class User extends Authenticatable implements MustVerifyEmail
             $value = config('app.url') . '/uploads/images/avatars/'.$value;
         }
         $this->attributes['avatar'] = $value;
+    }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
