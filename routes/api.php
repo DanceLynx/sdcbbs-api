@@ -26,4 +26,7 @@ Route::prefix('v1')
         Route::post('verificationCodes','VerificationCodesController@stroe')
             ->name('verificationCodes.store');
 
+        Route::post('users','UsersController@store')
+        ->name('users.store');
+
     });
