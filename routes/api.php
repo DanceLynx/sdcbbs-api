@@ -23,10 +23,16 @@ Route::prefix('v1')
     ->name('api.v1.')
     ->namespace('Api')
     ->group(function () {
-        Route::post('verificationCodes','VerificationCodesController@stroe')
-            ->name('verificationCodes.store');
+        Route::middleware('throttle:' . config('api.rate_limits.sign'))
+            ->group(function () {
+                Route::post('verificationCodes','VerificationCodesController@stroe')
+                    ->name('verificationCodes.store');
 
-        Route::post('users','UsersController@store')
-        ->name('users.store');
+                Route::post('users','UsersController@store')
+                ->name('users.store');
+        });
+        Route::middleware('throttle:' . config('api.rate_limits.access'))
+            ->group(function () {
 
+        });
     });
