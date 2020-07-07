@@ -7,8 +7,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\QueryBuilderBindable;
+
 class Topic extends Model
 {
+    use QueryBuilderBindable;
+    protected $queryClass = \App\Http\Queries\TopicQuery::class;
+
     protected $fillable = ['title', 'body', 'category_id',];
 
     public function user()
