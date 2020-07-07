@@ -18,4 +18,14 @@ class RepliesController extends Controller
         $reply->save();
         return new ReplyResource($reply);
     }
+
+    public function destroy(Topic $topic,Reply $reply)
+    {
+        if($topic->id != $reply->topic_id){
+            abort(404);
+        }
+        $this->authorize('destroy',$reply);
+        $reply->delete();
+        return response(null,204);
+    }
 }
