@@ -64,6 +64,12 @@ Route::prefix('v1')
                 Route::resource('topics', 'TopicsController')->only([
                     'index', 'show'
                 ]);
+                // 话题回复列表
+                Route::get('topics/{topic}/replies',"RepliesController@index")
+                    ->name('topics.topic.index');
+                // 列出用户下的回复列表
+                Route::get('users/{user}/replies',"RepliesController@userIndex")
+                    ->name('users.user.replies');
                 // 列出某个用户下的所有话题
                 Route::get('users/{user}/topics', 'TopicsController@userIndex')
                     ->name('users.topics.index');
