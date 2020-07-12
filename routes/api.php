@@ -111,6 +111,10 @@ Route::prefix('v1')
                     // 标记为已读
                     Route::patch('user/notifications/read','NotificationsController@read')
                         ->name('user/notifications.read');
+
+                    // 用户权限列表
+                    Route::get('user/permissions','PermissionsController@index')
+                        ->name('user.permissions.index');
                 });
 
         });
