@@ -103,6 +103,10 @@ Route::prefix('v1')
                     // 消息通知
                     Route::get('notifications',"NotificationsController@index")
                         ->name('notifications.index');
+
+                    // 消息统计
+                    Route::get('notifications/stats',"NotificationsController@stats")
+                        ->name('notifications.stats');
                 });
 
         });
