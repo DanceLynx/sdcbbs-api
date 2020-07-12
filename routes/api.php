@@ -73,6 +73,15 @@ Route::prefix('v1')
                 // 列出某个用户下的所有话题
                 Route::get('users/{user}/topics', 'TopicsController@userIndex')
                     ->name('users.topics.index');
+
+                // 推荐列表
+                Route::get('links',"LinksController@index")
+                    ->name('links.index');
+
+                // 获取活跃用户
+                Route::get('actived/users','UsersController@activedIndex')
+                    ->name('actived.users.index');
+
                 // 登录后可以访问的接口
                 Route::middleware('auth:api')->group(function() {
                     // 当前登录用户信息
