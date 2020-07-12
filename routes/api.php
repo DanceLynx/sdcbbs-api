@@ -107,6 +107,10 @@ Route::prefix('v1')
                     // 消息统计
                     Route::get('notifications/stats',"NotificationsController@stats")
                         ->name('notifications.stats');
+
+                    // 标记为已读
+                    Route::patch('user/notifications/read','NotificationsController@read')
+                        ->name('user/notifications.read');
                 });
 
         });
